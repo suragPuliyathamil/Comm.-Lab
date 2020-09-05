@@ -5,21 +5,6 @@
 
 %Simulation of Frequency Division Multiplexing and Demultiplexing
 
-%Pre-Lab
-
-%1. Explain multiplexing?
-%Ans- Combining multiple messages into a single signal for transmission is Multiplexing.
-
-%2. Explain different types of multiplexing?
-%Ans- There are two types of multiplexing
-%     a.Frequency division multiplexing
-%       Signals of different frequencies are multiplexed for transmission.
-%     b.Time division Multiplexing
-%       This is a method of putting multiple data streams in a single signal by separating the signal into many segments
-
-%3. What are the advantages of multiplexing?
-%Ans- Multiplexing allows us to make use of resources more efficiently by allowing us to transmit more information using a single signal.
-
 %Generating Input Signals 
 
 Fs = 100; 
@@ -105,6 +90,22 @@ plot(t(1:200)*100,d3(1:200));
 title('Signal 3 Recovered');
 xlabel('t');
 ylabel('Amplitude');
+
+%Pre-Lab
+
+%1. Explain multiplexing?
+%Ans- Combining multiple messages into a single signal for transmission is Multiplexing.
+
+%2. Explain different types of multiplexing?
+%Ans- There are two types of multiplexing
+%     a.Frequency division multiplexing
+%       Signals of different frequencies are multiplexed for transmission.
+%     b.Time division Multiplexing
+%       This is a method of putting multiple data streams in a single signal by separating the signal into many segments
+
+%3. What are the advantages of multiplexing?
+%Ans- Multiplexing allows us to make use of resources more efficiently by allowing us to transmit more information using a single signal.
+
 
 %Post-lab
 %1. Explain Frequency-division multiplexing
