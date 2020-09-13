@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mscript xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <version>9.8</version>
+   <release>2020a</release>
+   <date>2020-09-13</date>
+   <cell>
+      <count>1</count>
+      <mcode>% Name - Surag P
+% Roll No. - 181EC248
+
+% Experimment Eight
+
+%Simulate PCM and demodulation system and plot the waveforms.
+
+clear
+clc
+
+%Sample Sequence
+bits = [1 0 1 0 0 0 1 1 0]
+bitrate = 1;
+figure;
+
+%Unipolar Non-Return Zero
+[t,s] = unrz(bits,bitrate);
+subplot(5,1,1)
+plot(t,s,'LineWidth',1.5);
+axis([0 t(end) -0.1 1.1])
+grid on;
+title('Unipolar NRZ');
+
+%Unipolar Return Zero
+[t,s] = urz(bits,bitrate);
+subplot(5,1,2)
+plot(t,s,'LineWidth',1.5);
+axis([0 t(end) -0.1 1.1])
+grid on;
+title('Unipolar RZ');
+
+%Polar Return Zero
+[t,s] = prz(bits,bitrate);
+subplot(5,1,3)
+plot(t,s,'LineWidth',1.5);
+axis([0 t(end) -1.1 1.1])
+grid on;
+title('Polar RZ');
+
+%Polar Non-Return Zero
+[t,s] = pnrz(bits,bitrate);
+subplot(5,1,4)
+plot(t,s,'LineWidth',1.5);
+axis([0 t(end) -1.1 1.1])
+grid on;
+title('Polar NRZ');
+
+%Manchester Conding
+[t,s] = manchester(bits,bitrate);
+subplot(5,1,5)
+plot(t,s,'LineWidth',1.5);
+axis([0 t(end) -1.1 1.1])
+grid on;
+title('Manchester');
+
+
+function [t,x] = unrz(bits, bitrate)
+
+T = length(bits)/bitrate;
+n = 200;
+N = n*length(bits);
+dt = T/N;
+t = 0:dt:T;
+x = zeros(1,length(t));
+
+for i = 0:length(bits)-1
+  if bits(i+1) == 1
+    x(i*n+1:(i+1)*n) = 1;
+  else
+    x(i*n+1:(i+1)*n) = 0;
+  end
+end
+end
+
+function [t,x] = urz(bits, bitrate)
+
+T = length(bits)/bitrate;
+n = 200;
+N = n*length(bits);
+dt = T/N;
+t = 0:dt:T;
+x = zeros(1,length(t));
+
+for i = 0:length(bits)-1
+  if bits(i+1) == 1
+    x(i*n+1:(i+0.5)*n) = 1;
+    x((i+0.5)*n+1:(i+1)*n) = 0;
+  else
+    x(i*n+1:(i+1)*n) = 0;
+  end
+end
+end
+
+function [t,x] = prz(bits, bitrate)
+
+T = length(bits)/bitrate;
+n = 200;
+N = n*length(bits);
+dt = T/N;
+t = 0:dt:T;
+x = zeros(1,length(t));
+
+for i = 0:length(bits)-1
+  if bits(i+1) == 1
+    x(i*n+1:(i+0.5)*n) = 0.5;
+    x((i+0.5)*n+1:(i+1)*n) = 0;
+  else
+    x(i*n+1:(i+0.5)*n) = -0.5;
+    x((i+0.5)*n+1:(i+1)*n) = 0;
+  end
+end
+end
+
+function [t,x] = pnrz(bits, bitrate)
+
+T = length(bits)/bitrate;
+n = 200;
+N = n*length(bits);
+dt = T/N;
+t = 0:dt:T;
+x = zeros(1,length(t));
+
+for i = 0:length(bits)-1
+  if bits(i+1) == 1
+    x(i*n+1:(i+1)*n) = 0.5;
+  else
+    x(i*n+1:(i+1)*n) = -0.5;
+  end
+end
+end
+
+function [t,x] = manchester(bits, bitrate)
+
+T = length(bits)/bitrate;
+n = 200;
+N = n*length(bits);
+dt = T/N;
+t = 0:dt:T;
+x = zeros(1,length(t));
+
+for i = 0:length(bits)-1
+  if bits(i+1) == 1
+    x(i*n+1:(i+0.5)*n) = 1;
+    x((i+0.5)*n+1:(i+1)*n) = -1;
+  else
+    x(i*n+1:(i+0.5)*n) = -1;
+    x((i+0.5)*n+1:(i+1)*n) = 1;
+  end
+end
+end</mcode>
+      <mcode-xmlized>
+         <mwsh:code xml:space="preserve"><mwsh:comments xml:space="preserve">% Name - Surag P</mwsh:comments>
+<mwsh:comments xml:space="preserve">% Roll No. - 181EC248</mwsh:comments>
+
+<mwsh:comments xml:space="preserve">% Experimment Eight</mwsh:comments>
+
+<mwsh:comments xml:space="preserve">%Simulate PCM and demodulation system and plot the waveforms.</mwsh:comments>
+
+clear
+clc
+
+<mwsh:comments xml:space="preserve">%Sample Sequence</mwsh:comments>
+bits = [1 0 1 0 0 0 1 1 0]
+bitrate = 1;
+figure;
+
+<mwsh:comments xml:space="preserve">%Unipolar Non-Return Zero</mwsh:comments>
+[t,s] = unrz(bits,bitrate);
+subplot(5,1,1)
+plot(t,s,<mwsh:strings xml:space="preserve">'LineWidth'</mwsh:strings>,1.5);
+axis([0 t(end) -0.1 1.1])
+grid <mwsh:strings xml:space="preserve">on</mwsh:strings>;
+title(<mwsh:strings xml:space="preserve">'Unipolar NRZ'</mwsh:strings>);
+
+<mwsh:comments xml:space="preserve">%Unipolar Return Zero</mwsh:comments>
+[t,s] = urz(bits,bitrate);
+subplot(5,1,2)
+plot(t,s,<mwsh:strings xml:space="preserve">'LineWidth'</mwsh:strings>,1.5);
+axis([0 t(end) -0.1 1.1])
+grid <mwsh:strings xml:space="preserve">on</mwsh:strings>;
+title(<mwsh:strings xml:space="preserve">'Unipolar RZ'</mwsh:strings>);
+
+<mwsh:comments xml:space="preserve">%Polar Return Zero</mwsh:comments>
+[t,s] = prz(bits,bitrate);
+subplot(5,1,3)
+plot(t,s,<mwsh:strings xml:space="preserve">'LineWidth'</mwsh:strings>,1.5);
+axis([0 t(end) -1.1 1.1])
+grid <mwsh:strings xml:space="preserve">on</mwsh:strings>;
+title(<mwsh:strings xml:space="preserve">'Polar RZ'</mwsh:strings>);
+
+<mwsh:comments xml:space="preserve">%Polar Non-Return Zero</mwsh:comments>
+[t,s] = pnrz(bits,bitrate);
+subplot(5,1,4)
+plot(t,s,<mwsh:strings xml:space="preserve">'LineWidth'</mwsh:strings>,1.5);
+axis([0 t(end) -1.1 1.1])
+grid <mwsh:strings xml:space="preserve">on</mwsh:strings>;
+title(<mwsh:strings xml:space="preserve">'Polar NRZ'</mwsh:strings>);
+
+<mwsh:comments xml:space="preserve">%Manchester Conding</mwsh:comments>
+[t,s] = manchester(bits,bitrate);
+subplot(5,1,5)
+plot(t,s,<mwsh:strings xml:space="preserve">'LineWidth'</mwsh:strings>,1.5);
+axis([0 t(end) -1.1 1.1])
+grid <mwsh:strings xml:space="preserve">on</mwsh:strings>;
+title(<mwsh:strings xml:space="preserve">'Manchester'</mwsh:strings>);
+
+
+<mwsh:keywords xml:space="preserve">function</mwsh:keywords> [t,x] = unrz(bits, bitrate)
+
+T = length(bits)/bitrate;
+n = 200;
+N = n*length(bits);
+dt = T/N;
+t = 0:dt:T;
+x = zeros(1,length(t));
+
+<mwsh:keywords xml:space="preserve">for</mwsh:keywords> i = 0:length(bits)-1
+  <mwsh:keywords xml:space="preserve">if</mwsh:keywords> bits(i+1) == 1
+    x(i*n+1:(i+1)*n) = 1;
+  <mwsh:keywords xml:space="preserve">else</mwsh:keywords>
+    x(i*n+1:(i+1)*n) = 0;
+  <mwsh:keywords xml:space="preserve">end</mwsh:keywords>
+<mwsh:keywords xml:space="preserve">end</mwsh:keywords>
+<mwsh:keywords xml:space="preserve">end</mwsh:keywords>
+
+<mwsh:keywords xml:space="preserve">function</mwsh:keywords> [t,x] = urz(bits, bitrate)
+
+T = length(bits)/bitrate;
+n = 200;
+N = n*length(bits);
+dt = T/N;
+t = 0:dt:T;
+x = zeros(1,length(t));
+
+<mwsh:keywords xml:space="preserve">for</mwsh:keywords> i = 0:length(bits)-1
+  <mwsh:keywords xml:space="preserve">if</mwsh:keywords> bits(i+1) == 1
+    x(i*n+1:(i+0.5)*n) = 1;
+    x((i+0.5)*n+1:(i+1)*n) = 0;
+  <mwsh:keywords xml:space="preserve">else</mwsh:keywords>
+    x(i*n+1:(i+1)*n) = 0;
+  <mwsh:keywords xml:space="preserve">end</mwsh:keywords>
+<mwsh:keywords xml:space="preserve">end</mwsh:keywords>
+<mwsh:keywords xml:space="preserve">end</mwsh:keywords>
+
+<mwsh:keywords xml:space="preserve">function</mwsh:keywords> [t,x] = prz(bits, bitrate)
+
+T = length(bits)/bitrate;
+n = 200;
+N = n*length(bits);
+dt = T/N;
+t = 0:dt:T;
+x = zeros(1,length(t));
+
+<mwsh:keywords xml:space="preserve">for</mwsh:keywords> i = 0:length(bits)-1
+  <mwsh:keywords xml:space="preserve">if</mwsh:keywords> bits(i+1) == 1
+    x(i*n+1:(i+0.5)*n) = 0.5;
+    x((i+0.5)*n+1:(i+1)*n) = 0;
+  <mwsh:keywords xml:space="preserve">else</mwsh:keywords>
+    x(i*n+1:(i+0.5)*n) = -0.5;
+    x((i+0.5)*n+1:(i+1)*n) = 0;
+  <mwsh:keywords xml:space="preserve">end</mwsh:keywords>
+<mwsh:keywords xml:space="preserve">end</mwsh:keywords>
+<mwsh:keywords xml:space="preserve">end</mwsh:keywords>
+
+<mwsh:keywords xml:space="preserve">function</mwsh:keywords> [t,x] = pnrz(bits, bitrate)
+
+T = length(bits)/bitrate;
+n = 200;
+N = n*length(bits);
+dt = T/N;
+t = 0:dt:T;
+x = zeros(1,length(t));
+
+<mwsh:keywords xml:space="preserve">for</mwsh:keywords> i = 0:length(bits)-1
+  <mwsh:keywords xml:space="preserve">if</mwsh:keywords> bits(i+1) == 1
+    x(i*n+1:(i+1)*n) = 0.5;
+  <mwsh:keywords xml:space="preserve">else</mwsh:keywords>
+    x(i*n+1:(i+1)*n) = -0.5;
+  <mwsh:keywords xml:space="preserve">end</mwsh:keywords>
+<mwsh:keywords xml:space="preserve">end</mwsh:keywords>
+<mwsh:keywords xml:space="preserve">end</mwsh:keywords>
+
+<mwsh:keywords xml:space="preserve">function</mwsh:keywords> [t,x] = manchester(bits, bitrate)
+
+T = length(bits)/bitrate;
+n = 200;
+N = n*length(bits);
+dt = T/N;
+t = 0:dt:T;
+x = zeros(1,length(t));
+
+<mwsh:keywords xml:space="preserve">for</mwsh:keywords> i = 0:length(bits)-1
+  <mwsh:keywords xml:space="preserve">if</mwsh:keywords> bits(i+1) == 1
+    x(i*n+1:(i+0.5)*n) = 1;
+    x((i+0.5)*n+1:(i+1)*n) = -1;
+  <mwsh:keywords xml:space="preserve">else</mwsh:keywords>
+    x(i*n+1:(i+0.5)*n) = -1;
+    x((i+0.5)*n+1:(i+1)*n) = 1;
+  <mwsh:keywords xml:space="preserve">end</mwsh:keywords>
+<mwsh:keywords xml:space="preserve">end</mwsh:keywords>
+<mwsh:keywords xml:space="preserve">end</mwsh:keywords></mwsh:code>
+      </mcode-xmlized>
+      <mcode-count>1</mcode-count>
+      <cellOutputTarget>1</cellOutputTarget>
+      <mcodeoutput class="codeoutput">
+bits =
+
+     1     0     1     0     0     0     1     1     0
+
+</mcodeoutput>
+      <img src="Q8_01.png"/>
+   </cell>
+   <originalCode>% Name - Surag P
+% Roll No. - 181EC248
+
+% Experimment Eight
+
+%Simulate PCM and demodulation system and plot the waveforms.
+
+clear
+clc
+
+%Sample Sequence 
+bits = [1 0 1 0 0 0 1 1 0]
+bitrate = 1;
+figure;
+
+%Unipolar Non-Return Zero 
+[t,s] = unrz(bits,bitrate);
+subplot(5,1,1)
+plot(t,s,'LineWidth',1.5); 
+axis([0 t(end) -0.1 1.1])
+grid on;
+title('Unipolar NRZ');
+
+%Unipolar Return Zero
+[t,s] = urz(bits,bitrate);
+subplot(5,1,2)
+plot(t,s,'LineWidth',1.5);
+axis([0 t(end) -0.1 1.1])
+grid on;
+title('Unipolar RZ');
+
+%Polar Return Zero
+[t,s] = prz(bits,bitrate);
+subplot(5,1,3)
+plot(t,s,'LineWidth',1.5);
+axis([0 t(end) -1.1 1.1])
+grid on;
+title('Polar RZ');
+
+%Polar Non-Return Zero
+[t,s] = pnrz(bits,bitrate); 
+subplot(5,1,4)
+plot(t,s,'LineWidth',1.5);
+axis([0 t(end) -1.1 1.1])
+grid on;
+title('Polar NRZ');
+
+%Manchester Conding 
+[t,s] = manchester(bits,bitrate);
+subplot(5,1,5)
+plot(t,s,'LineWidth',1.5);
+axis([0 t(end) -1.1 1.1])
+grid on;
+title('Manchester');
+
+
+function [t,x] = unrz(bits, bitrate)
+
+T = length(bits)/bitrate; 
+n = 200;
+N = n*length(bits);
+dt = T/N;
+t = 0:dt:T;
+x = zeros(1,length(t)); 
+
+for i = 0:length(bits)-1
+  if bits(i+1) == 1
+    x(i*n+1:(i+1)*n) = 1;
+  else
+    x(i*n+1:(i+1)*n) = 0;
+  end
+end
+end
+
+function [t,x] = urz(bits, bitrate)
+
+T = length(bits)/bitrate; 
+n = 200;
+N = n*length(bits);
+dt = T/N;
+t = 0:dt:T;
+x = zeros(1,length(t));
+
+for i = 0:length(bits)-1
+  if bits(i+1) == 1
+    x(i*n+1:(i+0.5)*n) = 1;
+    x((i+0.5)*n+1:(i+1)*n) = 0;
+  else
+    x(i*n+1:(i+1)*n) = 0;
+  end
+end
+end
+
+function [t,x] = prz(bits, bitrate)
+
+T = length(bits)/bitrate; 
+n = 200;
+N = n*length(bits);
+dt = T/N;
+t = 0:dt:T;
+x = zeros(1,length(t)); 
+
+for i = 0:length(bits)-1
+  if bits(i+1) == 1
+    x(i*n+1:(i+0.5)*n) = 0.5;
+    x((i+0.5)*n+1:(i+1)*n) = 0;
+  else
+    x(i*n+1:(i+0.5)*n) = -0.5;
+    x((i+0.5)*n+1:(i+1)*n) = 0;
+  end
+end
+end
+
+function [t,x] = pnrz(bits, bitrate)
+
+T = length(bits)/bitrate; 
+n = 200;
+N = n*length(bits);
+dt = T/N;
+t = 0:dt:T;
+x = zeros(1,length(t)); 
+
+for i = 0:length(bits)-1
+  if bits(i+1) == 1
+    x(i*n+1:(i+1)*n) = 0.5;
+  else
+    x(i*n+1:(i+1)*n) = -0.5;
+  end
+end
+end
+
+function [t,x] = manchester(bits, bitrate)
+
+T = length(bits)/bitrate;
+n = 200;
+N = n*length(bits);
+dt = T/N;
+t = 0:dt:T;
+x = zeros(1,length(t)); 
+
+for i = 0:length(bits)-1
+  if bits(i+1) == 1
+    x(i*n+1:(i+0.5)*n) = 1;
+    x((i+0.5)*n+1:(i+1)*n) = -1;
+  else
+    x(i*n+1:(i+0.5)*n) = -1;
+    x((i+0.5)*n+1:(i+1)*n) = 1;
+  end
+end
+end
+
+</originalCode>
+   <m-file>Q8</m-file>
+   <filename>/Users/DESK/iCloud/EC/Sem5/EC303 - Comm. Lab 1/programs/Q8.m</filename>
+   <outputdir>/Users/DESK/iCloud/EC/Sem5/EC303 - Comm. Lab 1/programs/html</outputdir>
+</mscript>
